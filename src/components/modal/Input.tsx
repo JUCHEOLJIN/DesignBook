@@ -1,21 +1,21 @@
-import styled from '@emotion/styled'
-import React from 'react'
+import styled from '@emotion/styled';
+import React from 'react';
 
 interface InputProps {
   /**
    * 입력 전에 보여줄 메세지를 적어주세요.
    */
-  placeholder?: string
+  placeholder?: string;
 
   /**
    *  입력된 값입니다. 초기 값을 줄 수 있습니다.
    */
-  value?: string
+  value?: string;
 
   /**
    *  입력 시에 발생하는 동작입니다.
    */
-  onChange?: () => void
+  onChange?: () => void;
 }
 
 const InputBar = styled.input`
@@ -36,10 +36,10 @@ const InputBar = styled.input`
   &:focus {
     border: ${({ theme }) => '1px solid ' + theme.colors.shoplBlue};
   }
-`
+`;
 
 const Input = ({ placeholder, onChange, value }: InputProps) => (
   <InputBar onChange={onChange} value={value} placeholder={placeholder} />
-)
+);
 
-export default Input
+export default Input;

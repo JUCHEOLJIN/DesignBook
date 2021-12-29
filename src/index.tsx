@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Global, ThemeProvider } from '@emotion/react';
-import reset from "./styles/reset"
+import reset from './styles/reset';
 import theme from './styles/Theme';
+import { CssBaseline } from '@mui/material';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Global styles={reset}/>
+    <Global styles={reset} />
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

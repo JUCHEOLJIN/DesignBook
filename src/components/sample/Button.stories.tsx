@@ -123,6 +123,24 @@ export const WithIcon: ComponentStory<typeof Button> = (args) => {
   );
 };
 
+export const IconOnly: ComponentStory<typeof Button> = (args) => {
+  return (
+    <div>
+      <ButtonGroup>
+        <Button iconOnly size="small">
+          <Icon icon="IcFavorite" />
+        </Button>
+        <Button iconOnly size="medium">
+          <Icon icon="IcFavorite" />
+        </Button>
+        <Button iconOnly size="big">
+          <Icon icon="IcFavorite" />
+        </Button>
+      </ButtonGroup>
+    </div>
+  );
+};
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;

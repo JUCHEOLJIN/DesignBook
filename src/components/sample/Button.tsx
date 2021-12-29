@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import { Button as MuiButton } from '@mui/material';
 
 interface ButtonProps {
   /**
@@ -32,29 +33,6 @@ interface ButtonProps {
    */
   iconOnly?: boolean;
 }
-
-/**
- * 'Button' 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.
- */
-const Button = ({
-  children,
-  type = 'primary',
-  size = 'medium',
-  disabled,
-  width,
-  iconOnly,
-  onClick,
-}: ButtonProps) => (
-  <ButtonWrapper
-    css={[types[type], sizes[size], { width }]}
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {children}
-  </ButtonWrapper>
-);
-
-export default Button;
 
 const ButtonWrapper = styled.button`
   display: flex;
@@ -201,3 +179,31 @@ const iconOnlySizes = {
     width: 3rem;
   `,
 };
+
+/**
+ * 'Button' 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.
+ */
+const Button = ({
+  children,
+  type = 'primary',
+  size = 'medium',
+  disabled,
+  width,
+  iconOnly,
+  onClick,
+}: ButtonProps) => (
+  <ButtonWrapper
+    css={[
+      types[type],
+      sizes[size],
+      { width },
+      iconOnly && [iconOnlyStyle, iconOnlySizes[size]],
+    ]}
+    disabled={disabled}
+    onClick={onClick}
+  >
+    {children}
+  </ButtonWrapper>
+);
+
+export default Button;

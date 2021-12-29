@@ -18,6 +18,12 @@ interface InputProps {
   onChange?: () => void;
 }
 
+const Input = ({ placeholder, onChange, value }: InputProps) => (
+  <InputBar onChange={onChange} value={value} placeholder={placeholder} />
+);
+
+export default Input;
+
 const InputBar = styled.input`
   width: 100%;
   max-width: 600px;
@@ -37,9 +43,3 @@ const InputBar = styled.input`
     border: ${({ theme }) => '1px solid ' + theme.colors.shoplBlue};
   }
 `;
-
-const Input = ({ placeholder, onChange, value }: InputProps) => (
-  <InputBar onChange={onChange} value={value} placeholder={placeholder} />
-);
-
-export default Input;

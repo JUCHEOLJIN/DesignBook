@@ -5,8 +5,20 @@ declare module '@emotion/react' {
   export interface Theme extends MuiTheme {
     colors: {
       shoplBlue: string;
-      shoplRed: string;
-      shoplBlack: string;
+      gray: string;
+      black: string;
+      paleGray: string;
+    };
+    button: {
+      primary: {
+        background: string;
+      };
+      secondary: {
+        background: string;
+      };
+      tertiary: {
+        background: string;
+      };
     };
     palette: {
       primary: {

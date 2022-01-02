@@ -53,6 +53,7 @@ const Button = ({
     <StyledButton
       css={[themes[theme], sizes[size], { width }]}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </StyledButton>

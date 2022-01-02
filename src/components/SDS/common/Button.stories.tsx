@@ -23,28 +23,28 @@ Default.args = {
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: 'DEFAULT',
+  children: 'PRIMARY',
   onClick: action('Click'),
   theme: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Secondary',
+  children: 'SECONDARY',
   onClick: action('Click'),
   theme: 'secondary',
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  children: 'Tertiary',
+  children: 'TERTIARY',
   onClick: action('Click'),
   theme: 'tertiary',
 };
 
 export const Quaternary = Template.bind({});
 Quaternary.args = {
-  children: 'Quaternary',
+  children: 'QUATERNARY',
   onClick: action('Click'),
   theme: 'quaternary',
 };
@@ -63,7 +63,7 @@ export const Size: ComponentStory<typeof Button> = ({
           <div>
             <p>{each[0].toUpperCase() + each.slice(1)}</p>
             <Button {...args} size={each}>
-              {children ?? each}
+              {children ?? each.toUpperCase()}
             </Button>
           </div>
         ))}

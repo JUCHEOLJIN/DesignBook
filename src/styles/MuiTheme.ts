@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { SERVFAIL } from 'dns';
 
 export default createTheme({
   typography: {

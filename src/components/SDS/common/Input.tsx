@@ -75,7 +75,6 @@ export default Input;
 const InputBox = styled.div`
   position: relative;
   width: 100%;
-  margin: 1rem;
   padding: 0.5rem 0.875em 0.5rem 0.875rem;
   border: 1px solid #eaeaea;
   border-radius: 4px;

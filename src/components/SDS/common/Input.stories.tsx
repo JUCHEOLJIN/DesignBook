@@ -81,6 +81,7 @@ Login.args = {
 const inputStyle = css`
   padding-top: 0.875rem;
   padding-bottom: 0.875rem;
+  margin-bottom: 1rem;
 `;
 
 const iconStyle = css`

@@ -2,8 +2,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import ButtonGroup from './ButtonGroup';
-import Button from './Button';
+import ButtonGroup from '../ButtonGroup';
+import Button from '../Button';
+import Icon from '../Icon';
 
 interface ModalProps {
   /**
@@ -25,6 +26,16 @@ interface ModalProps {
    *  안에 컨텐츠를 넣을 수 있습니다.
    */
   children?: React.ReactNode;
+
+  /**
+   *  모달창의 크기를 임의로 설정할 수 있습니다.
+   */
+  width?: string;
+
+  /**
+   *  모달창의 크기를 임의로 설정할 수 있습니다.
+   */
+  height?: string;
 
   /**
    * 버튼을 숨길 수 있습니다ㅣ.
@@ -62,6 +73,8 @@ const Modal = ({
   cancellable,
   cancelText = '취소',
   confirmText = '확인',
+  width,
+  height,
   onCancel,
   onConfirm,
 }: ModalProps) => {
@@ -71,13 +84,18 @@ const Modal = ({
     <>
       <DarkLayer css={fullscreen} />
       <BoxWrapper css={fullscreen}>
-        <Box>
-          <Header>{title && <Title>{title}</Title>}</Header>
+        <Box css={{ width, height }}>
+          <Header>
+            {title && <Title>{title}</Title>}
+            <CloseBtn onClick={onCancel}>
+              <Icon icon="IcCloseBtn" color="#3299fe" isFilled size="40px" />
+            </CloseBtn>
+          </Header>
           {description && <Description>{description}</Description>}
-          {children}
+          <Contents>{children}</Contents>
           {!isHideButtons && (
             <Footer>
-              <ButtonGroup className="button-group">
+              <ButtonGroup>
                 {cancellable && (
                   <Button theme="tertiary" onClick={onCancel} width="7rem">
                     {cancelText}
@@ -98,33 +116,35 @@ const Modal = ({
 export default Modal;
 
 const fullscreen = css`
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 `;
 
 const DarkLayer = styled.div`
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 `;
 
 const BoxWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 15;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
 `;
 
 const Box = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%; // 임시
-  max-width: 25rem; // 임시
-  height: 25rem; // 임시
+  position: relative;
   border-radius: 8px;
   background-color: #fff;
 `;
@@ -132,12 +152,24 @@ const Box = styled.div`
 const Header = styled.header`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 3.75rem;
   padding: 0 1.5rem;
   border-bottom: 1px solid #eaeaea;
-  background-color: #fbfbfb;
   border-radius: 8px 8px 0 0;
+  background-color: #fbfbfb;
+`;
+
+const CloseBtn = styled.button`
+  border: none;
+  background: transparent;
+  transform: translateX(25%);
+  cursor: pointer;
+`;
+
+const Contents = styled.div`
+  flex: 1;
 `;
 
 const Title = styled.h3`
@@ -151,8 +183,6 @@ const Description = styled.p`
 `;
 
 const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: center;
   width: 100%;

@@ -46,14 +46,21 @@ interface ModalProps {
    * 취소 버튼을 숨길 수 있습니다.
    */
   cancellable?: boolean;
+
   /**
    *  취소 버튼의 내용을 설정할 수 있습니다.
    */
   cancelText: string;
+
   /**
    * 확인 버튼의 내용을 설정할 수 있습니다.
    */
   confirmText: string;
+
+  /**
+   * 우측 서브 버튼에 들어갈 요소를 설정할 수 있습니다.
+   */
+  subChidren?: React.ReactNode;
   /**
    * 취소 버튼 클릭 시 동작을 설정할 수 있습니다.
    */
@@ -62,6 +69,10 @@ interface ModalProps {
    *  확인 버튼 클릭 시 동작을 설정할 수 있습니다.
    */
   onConfirm?: () => void;
+  /**
+   *   서브 버튼 클릭 시 동작을 설정할 수 있습니다.
+   */
+  onSubAction?: () => void;
 }
 
 const Modal = ({
@@ -75,8 +86,10 @@ const Modal = ({
   confirmText = '확인',
   width,
   height,
+  subChidren,
   onCancel,
   onConfirm,
+  onSubAction,
 }: ModalProps) => {
   if (!isOpened) return null;
 
@@ -87,9 +100,7 @@ const Modal = ({
         <Box css={{ width, height }}>
           <Header>
             {title && <Title>{title}</Title>}
-            <CloseBtn onClick={onCancel}>
-              <Icon icon="IcCloseBtn" color="#3299fe" isFilled size="40px" />
-            </CloseBtn>
+            <SubBtn onClick={onSubAction}>{subChidren}</SubBtn>
           </Header>
           {description && <Description>{description}</Description>}
           <Contents>{children}</Contents>
@@ -161,7 +172,7 @@ const Header = styled.header`
   background-color: #fbfbfb;
 `;
 
-const CloseBtn = styled.button`
+const SubBtn = styled.button`
   border: none;
   background: transparent;
   transform: translateX(25%);

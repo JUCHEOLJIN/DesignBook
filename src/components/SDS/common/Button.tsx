@@ -71,7 +71,7 @@ const StyledButton = styled.button`
   border-radius: 4px;
   background: #fff;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.57;
   outline: none;
   cursor: pointer;

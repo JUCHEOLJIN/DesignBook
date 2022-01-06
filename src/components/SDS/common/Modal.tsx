@@ -2,9 +2,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import ButtonGroup from '../ButtonGroup';
-import Button from '../Button';
-import Icon from '../Icon';
+import ButtonGroup from './ButtonGroup';
+import Button from './Button';
 
 interface ModalProps {
   /**

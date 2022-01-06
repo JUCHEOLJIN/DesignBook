@@ -53,7 +53,7 @@ const Wrapper = styled.div<{ direction: string }>`
 `;
 
 const gapStyle = (direction: 'row' | 'column', gap: number | string) => {
-  const marginType = direction === 'row' ? 'margin-left' : 'margin-top';
+  const marginType = direction === 'row' ? 'marginLeft' : 'marginTop';
   return css({
     'button + button': {
       [marginType]: gap,

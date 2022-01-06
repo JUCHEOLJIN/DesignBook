@@ -1,10 +1,12 @@
 const theme = {
   colors: {
     shoplBlue: '#3299fe',
-    gray: '#777',
+    grey: '#777',
     black: '#333',
-    paleGray: '#eaf5ff',
+    white: '#fff',
+    paleGrey: '#eaf5ff',
     stone: '#f9f9f9',
+    lightGrey: '#eaeaea',
   },
   button: {
     primary: {

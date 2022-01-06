@@ -76,9 +76,9 @@ const StyledButton = styled.button`
   outline: none;
   cursor: pointer;
 
-  &:focus {
+  /* &:focus {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-  }
+  } */
 
   &:disabled {
     cursor: not-allowed;
@@ -91,7 +91,7 @@ const themes = {
     color: #fff;
 
     &:hover {
-      background-color: #2d89e4;
+      background-color: #2582df;
     }
 
     &:active {
@@ -119,19 +119,23 @@ const themes = {
     color: ${emotionTheme.colors.shoplBlue};
 
     &:hover {
-      background-color: ${emotionTheme.colors.paleGray};
+      background-color: ${emotionTheme.colors.paleGrey};
+    }
+
+    &:active {
+      background-color: #d9ebfc;
     }
 
     &:disabled {
       border: none;
-      background-color: #eaeaea;
+      background-color: #d4e9fd;
       color: #ccc;
     }
   `,
 
   quaternary: css`
-    border: 1px solid ${emotionTheme.colors.gray};
-    color: ${emotionTheme.colors.gray};
+    border: 1px solid ${emotionTheme.colors.grey};
+    color: ${emotionTheme.colors.grey};
 
     &:hover {
       background-color: ${emotionTheme.colors.stone};

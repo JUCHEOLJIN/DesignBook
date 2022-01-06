@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Modal from './Modal';
-import Input from '../Input';
+import Input from './Input';
 
 export default {
   component: Modal,

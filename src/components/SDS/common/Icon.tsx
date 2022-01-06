@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import * as icons from '../../../assets/icons';
 
-type IconType = keyof typeof icons;
+export type IconType = keyof typeof icons;
 export const iconTypes: IconType[] = Object.keys(icons) as any[];
 
 interface IconProps {

@@ -52,7 +52,7 @@ const EmployeeFilter = ({
   };
 
   return (
-    <FilterItem
+    <FilterWrapper
       isActive={isActive}
       className={className}
       onClick={onClick}
@@ -69,13 +69,13 @@ const EmployeeFilter = ({
         <Type>{type}</Type>
         <Condition>{getSelectedResult()}</Condition>
       </TextBox>
-    </FilterItem>
+    </FilterWrapper>
   );
 };
 
 export default EmployeeFilter;
 
-const FilterItem = styled.li<{ isActive: boolean; id: string }>`
+const FilterWrapper = styled.li<{ isActive: boolean; id: string }>`
   display: flex;
   width: 25rem;
   padding: 1.125rem 1.5rem;

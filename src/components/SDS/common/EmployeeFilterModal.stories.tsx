@@ -5,7 +5,7 @@ import EmployeeFilterModal from './EmployeeFilterModal';
 
 export default {
   component: EmployeeFilterModal,
-  title: 'SDS/EmployeeFilterModal',
+  title: 'SDS/EmployeeFilterModal/EmployeeFilterModal',
   argTypes: {},
 } as ComponentMeta<typeof EmployeeFilterModal>;
 

@@ -8,7 +8,7 @@ import Button from './Button';
 
 export default {
   component: Button,
-  title: 'SDS/Button',
+  title: 'SDS/Buttons/Button',
   argTypes: {},
 } as ComponentMeta<typeof Button>;
 

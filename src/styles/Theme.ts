@@ -7,6 +7,7 @@ const theme = {
     paleGrey: '#eaf5ff',
     stone: '#f9f9f9',
     lightGrey: '#eaeaea',
+    deepGrey: '#9a9a9a',
   },
   button: {
     primary: {

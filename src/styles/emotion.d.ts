@@ -12,6 +12,7 @@ declare module '@emotion/react' {
       paleGrey: string;
       stone: string;
       lightGrey: string;
+      deepGrey: string;
     };
     button: {
       primary: {

@@ -29,26 +29,31 @@ const USER_POSITION = {
       positionName: '테스트',
       positionId: '96461E59352E4A9E',
       isChecked: false,
+      title: '테스트',
     },
     {
       positionName: '사원',
       positionId: 'F865B344331209AF',
       isChecked: false,
+      title: '사원',
     },
     {
       positionName: '차장',
       positionId: 'D2BED602E177062E',
       isChecked: false,
+      title: '차장',
     },
     {
       positionName: '주임',
       positionId: '7D1A20C42C0507B8',
       isChecked: true,
+      title: '주입',
     },
     {
       positionName: '대리',
       positionId: 'B618C4A347B78B83',
       isChecked: true,
+      title: '대리',
     },
   ],
 };
@@ -62,6 +67,7 @@ const USER_GRADE = {
       userGradeName: '다이아',
       userGradeIcon: '/img/icon/icon_grade_0.png',
       isChecked: false,
+      title: '다이아',
     },
     {
       userGradeId: '50EF55A9B388D629',
@@ -69,6 +75,7 @@ const USER_GRADE = {
       userGradeName: '킹',
       userGradeIcon: '/img/icon/icon_grade_1.png',
       isChecked: false,
+      title: '킹',
     },
   ],
 };
@@ -94,6 +101,7 @@ const ADMIN_GROUP = {
       isLeader: '1',
       isPermitApproval: '1',
       isChecked: false,
+      title: 'eden company',
     },
     {
       groupId: 'BC63010A9F852818',
@@ -113,6 +121,7 @@ const ADMIN_GROUP = {
       isLeader: '1',
       isPermitApproval: '1',
       isChecked: true,
+      title: 'eden story',
     },
     {
       groupId: '12AC1B666DF10A22',
@@ -132,6 +141,7 @@ const ADMIN_GROUP = {
       isLeader: '1',
       isPermitApproval: '1',
       isChecked: false,
+      title: 'eden task',
     },
     {
       groupId: '5E46573BC5CC62C6',
@@ -151,6 +161,7 @@ const ADMIN_GROUP = {
       isLeader: '1',
       isPermitApproval: '1',
       isChecked: false,
+      title: 'eden task2',
     },
   ],
 };

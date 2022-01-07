@@ -25,11 +25,12 @@ Default.args = {
     positionName: '사원',
     positionId: 'F865B344331209AF',
     isChecked: false,
-    title: '사원',
   },
+  name: 'position',
 };
 
 export const Active = Template.bind({});
 Active.args = {
+  ...Default.args,
   checkItem: { ...Default.args.checkItem, isChecked: true },
 };

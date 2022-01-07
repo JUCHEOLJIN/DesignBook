@@ -57,7 +57,7 @@ const CheckItemWrapper = styled.li<{ isChecked: boolean }>`
   cursor: pointer;
 `;
 
-const Title = styled.div`
+const Title = styled.h3`
   margin-left: 0.5rem;
   font-size: 14px;
 `;

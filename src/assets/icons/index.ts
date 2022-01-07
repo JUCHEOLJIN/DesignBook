@@ -8,3 +8,7 @@ export { ReactComponent as IcRefresh } from './btn-refresh.svg';
 export { ReactComponent as IcGrade } from './ic-grade.svg';
 export { ReactComponent as IcUncheck } from './check-line.svg';
 export { ReactComponent as IcCheck } from './check-line-active.svg';
+export { ReactComponent as IcSearch } from './icbtn-search.svg';
+export { ReactComponent as IcGrade0 } from './icon-grade-1.svg';
+export { ReactComponent as IcGrade1 } from './icon-grade-2.svg';
+export { ReactComponent as IcGrade2 } from './icon-grade-3.svg';

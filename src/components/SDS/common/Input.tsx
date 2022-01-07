@@ -73,6 +73,8 @@ const Input = ({
 export default Input;
 
 const InputBox = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
   padding: 0.5rem 0.875em 0.5rem 0.875rem;

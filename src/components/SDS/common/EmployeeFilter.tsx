@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import Icon from './Icon';
 import { IconType } from './Icon';
 
-export interface FilterProps {
+export interface FilterType {
   filterId: string;
   nameKey: 'groupName' | 'positionName' | 'userGradeName';
   type: string;
@@ -15,7 +15,7 @@ export interface FilterProps {
 
 interface EmployeeFilterProps {
   isActive: boolean;
-  filter: FilterProps;
+  filter: FilterType;
   className?: string;
   onClick: (e?: React.MouseEvent<HTMLElement>) => void;
 }
@@ -80,6 +80,7 @@ const FilterWrapper = styled.li<{ isActive: boolean; id: string }>`
   width: 25rem;
   padding: 1.125rem 1.5rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-right: 1px solid ${({ theme }) => theme.colors.lightGrey};
   background-color: ${({ isActive, theme }) =>
     isActive ? theme.colors.paleGrey : theme.colors.white};
   list-style: none;

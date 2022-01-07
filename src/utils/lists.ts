@@ -22,13 +22,13 @@ export const USER_POSITION = {
     {
       positionName: '주임',
       positionId: '7D1A20C42C0507B8',
-      isChecked: true,
+      isChecked: false,
       title: '주입',
     },
     {
       positionName: '대리',
       positionId: 'B618C4A347B78B83',
-      isChecked: true,
+      isChecked: false,
       title: '대리',
     },
   ],
@@ -96,7 +96,7 @@ export const ADMIN_GROUP = {
       leaderNoAprvCnt: 0,
       isLeader: '1',
       isPermitApproval: '1',
-      isChecked: true,
+      isChecked: false,
       title: 'eden story',
     },
     {

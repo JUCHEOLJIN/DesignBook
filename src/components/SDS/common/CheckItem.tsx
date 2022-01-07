@@ -10,20 +10,24 @@ export interface CheckItemType {
 
 interface CheckItemProps {
   checkItem: CheckItemType;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
+  name: string;
   className?: string;
 }
 
 const CheckItem = ({
-  checkItem: { isChecked, title, userGradeIcon },
+  checkItem,
+  checkItem: { isChecked, userGradeIcon },
   className,
+  name,
   onClick,
 }: CheckItemProps) => {
   return (
     <CheckItemWrapper
       className={className}
       isChecked={isChecked}
-      onClick={onClick}
+      onClick={(e) => onClick(e, name)}
+      id={checkItem[`${name}Id`]}
     >
       <Icon
         icon={isChecked ? 'IcCheck' : 'IcUncheck'}
@@ -33,7 +37,7 @@ const CheckItem = ({
       {userGradeIcon && (
         <Icon icon={userGradeIcon} size="25px" css={iconStyle} />
       )}
-      <Title>{title}</Title>
+      <Title>{checkItem[`${name}Name`]}</Title>
     </CheckItemWrapper>
   );
 };
@@ -50,6 +54,7 @@ const CheckItemWrapper = styled.li<{ isChecked: boolean }>`
   color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.shoplBlue : theme.colors.deepGrey};
   list-style: none;
+  cursor: pointer;
 `;
 
 const Title = styled.div`

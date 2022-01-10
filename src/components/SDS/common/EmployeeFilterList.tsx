@@ -10,9 +10,9 @@ interface EmployeeFilterListProps {
   currentType?: '그룹' | '직급' | '등급' | null;
   onClick: (e?: React.MouseEvent<HTMLElement>) => void;
   className?: string;
-  groupList: ListType[];
-  gradeList: ListType[];
-  positionList: ListType[];
+  groupList: ListType;
+  gradeList: ListType;
+  positionList: ListType;
 }
 
 const EmployeeFilterList = ({

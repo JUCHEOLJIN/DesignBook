@@ -6,19 +6,22 @@ import Modal from './Modal';
 import PositionCheckList from './PositionCheckList';
 import GradeCheckList from './GradeCheckList';
 import { USER_GRADE, USER_POSITION, ADMIN_GROUP } from '../../../utils/lists';
+import handleData from '../../../utils/handleData';
 
 interface EmployeeFilterModalProps {
   isOpened: boolean;
 }
 
 const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
-  const [groupList, setGroupList] = useState<CheckItemType[]>(
-    ADMIN_GROUP.selectList,
+  const [groupList, setGroupList] = useState<CheckItemType>(
+    handleData(ADMIN_GROUP.selectList, 'group'),
   );
-  const [positionList, setPositionList] = useState<CheckItemType[]>(
-    USER_POSITION.list,
+  const [positionList, setPositionList] = useState<CheckItemType>(
+    handleData(USER_POSITION.list, 'position'),
   );
-  const [gradeList, setGradeList] = useState<CheckItemType[]>(USER_GRADE.list);
+  const [gradeList, setGradeList] = useState<CheckItemType>(
+    handleData(USER_GRADE.list, 'userGrade'),
+  );
   const [currentType, setCurrentType] = useState<
     '그룹' | '직급' | '등급' | null
   >(null);
@@ -31,24 +34,36 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
   const getTargetList = (name: string) => {
     switch (name) {
       case 'position':
-        return [...positionList];
+        return { ...positionList };
       case 'group':
-        return [...groupList];
+        return { ...groupList };
       case 'userGrade':
-        return [...gradeList];
+        return { ...gradeList };
       default:
         throw new Error(`${name} is invalid parameter`);
     }
   };
 
-  const setTargetList = (name: string, checked: CheckItemType[]) => {
+  const setTargetList = (name: string, checked: CheckItemType) => {
     switch (name) {
       case 'position':
-        return setPositionList(checked);
+        return setPositionList((position) => {
+          const newPosition = { ...position, [checked[`${name}Id`]]: checked };
+          return newPosition;
+        });
       case 'group':
-        return setGroupList(checked);
+        return setGroupList((group) => {
+          const newGroup = { ...group, [checked[`${name}Id`]]: checked };
+          return newGroup;
+        });
       case 'userGrade':
-        return setGradeList(checked);
+        return setGradeList((userGrade) => {
+          const newUserGrade = {
+            ...userGrade,
+            [checked[`${name}Id`]]: checked,
+          };
+          return newUserGrade;
+        });
       default:
         throw new Error(`${name} is invalid parameter`);
     }
@@ -56,13 +71,10 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
 
   const handleCheck = (e: React.MouseEvent<HTMLElement>, name: string) => {
     const { id } = e?.currentTarget as HTMLLIElement;
-    const checked = getTargetList(name).map((item: CheckItemType) => {
-      if (item[`${name}Id`] !== id) {
-        return item;
-      } else {
-        return { ...item, isChecked: !item.isChecked };
-      }
-    });
+    const checked = {
+      ...getTargetList(name)[id],
+      isChecked: !getTargetList(name)[id].isChecked,
+    };
     setTargetList(name, checked);
   };
 

@@ -7,7 +7,7 @@ import Input from './Input';
 import Icon from './Icon';
 
 interface PositionCheckListProps {
-  list: CheckItemType[];
+  list: CheckItemType;
   onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
   className?: string;
 }
@@ -27,11 +27,11 @@ const GradeCheckList = ({
       >
         <Icon icon="IcSearch" color="#cacaca" size="1.5rem" />
       </Input>
-      {list.map((item, idx) => (
+      {Object.keys(list).map((key) => (
         <CheckItem
-          checkItem={item}
+          checkItem={list[key]}
           onClick={onClick}
-          key={idx}
+          key={key}
           name="userGrade"
         />
       ))}

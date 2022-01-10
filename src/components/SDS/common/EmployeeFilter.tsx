@@ -32,7 +32,9 @@ const EmployeeFilter = ({
     }
 
     if (list) {
-      const selectedList = list.filter((item: any) => item.isChecked);
+      const selectedList = Object.keys(list).filter(
+        (key) => list[key].isChecked,
+      );
       return selectedList;
     }
   };
@@ -43,7 +45,7 @@ const EmployeeFilter = ({
       handleList() !== undefined &&
       handleList()[0] !== undefined
     ) {
-      return `${handleList()[0][nameKey]} ${
+      return `${list[handleList()[0]][nameKey]} ${
         handleList().length > 1 ? `+ ${handleList().length - 1}` : ''
       }`;
     } else {

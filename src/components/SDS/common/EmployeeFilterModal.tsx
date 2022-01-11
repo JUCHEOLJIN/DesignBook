@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EmployeeFilterList from './EmployeeFilterList';
 import { CheckItemType } from './CheckItem';
 import Modal from './Modal';
@@ -25,6 +25,10 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
   const [currentType, setCurrentType] = useState<
     '그룹' | '직급' | '등급' | null
   >(null);
+
+  const [positionSearchValue, setPositionSearchValue] = useState('');
+  const [groupSearchValue, setGroupSearchValue] = useState('');
+  const [userGradeSearchValue, setUserGradeSearchValue] = useState('');
 
   const handleType = (e?: React.MouseEvent<HTMLElement>) => {
     const { id } = e?.currentTarget as HTMLLIElement;
@@ -78,6 +82,26 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
     setTargetList(name, checked);
   };
 
+  const handleSearch = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: string,
+  ) => {
+    const { value } = e?.target;
+    switch (name) {
+      case 'position':
+        setPositionSearchValue(value);
+        break;
+      case 'group':
+        setGroupSearchValue(value);
+        break;
+      case 'userGrade':
+        setUserGradeSearchValue(value);
+        break;
+      default:
+        throw new Error(`${name} is invalid parameter`);
+    }
+  };
+
   return (
     <Modal
       title="직원필터"
@@ -95,10 +119,20 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
           currentType={currentType}
         />
         {currentType === '직급' && positionList && (
-          <PositionCheckList list={positionList} onClick={handleCheck} />
+          <PositionCheckList
+            list={positionList}
+            onClick={handleCheck}
+            handleSearch={handleSearch}
+            value={positionSearchValue}
+          />
         )}
         {currentType === '등급' && gradeList && (
-          <GradeCheckList list={gradeList} onClick={handleCheck} />
+          <GradeCheckList
+            list={gradeList}
+            onClick={handleCheck}
+            handleSearch={handleSearch}
+            value={userGradeSearchValue}
+          />
         )}
       </Wrapper>
     </Modal>

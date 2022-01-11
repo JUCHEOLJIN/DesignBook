@@ -1,20 +1,22 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import PositionCheckList from './PositionCheckList';
+import GradeCheckList from './GradeCheckList';
 import { USER_GRADE } from '../../../utils/lists';
+import handleData from '../../../utils/handleData';
 
 export default {
-  component: PositionCheckList,
+  component: GradeCheckList,
   title: 'SDS/EmployeeFilterModal/GradeCheckList',
   argTypes: {},
-} as ComponentMeta<typeof PositionCheckList>;
+} as ComponentMeta<typeof GradeCheckList>;
 
-const Template: ComponentStory<typeof PositionCheckList> = (args) => (
-  <PositionCheckList {...args} />
+const Template: ComponentStory<typeof GradeCheckList> = (args) => (
+  <GradeCheckList {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  list: USER_GRADE.list,
+  list: handleData(USER_GRADE.list, 'userGrade'),
+  value: '',
 };

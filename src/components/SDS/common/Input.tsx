@@ -47,7 +47,7 @@ interface InputProps {
   /**
    *  입력 시에 발생하는 동작입니다.
    */
-  onChange?: () => void;
+  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({

@@ -82,7 +82,6 @@ const FilterWrapper = styled.li<{ isActive: boolean; id: string }>`
   width: 25rem;
   padding: 1.125rem 1.5rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
-  border-right: 1px solid ${({ theme }) => theme.colors.lightGrey};
   background-color: ${({ isActive, theme }) =>
     isActive ? theme.colors.paleGrey : theme.colors.white};
   list-style: none;

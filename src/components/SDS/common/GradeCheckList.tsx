@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import CheckItem, { CheckItemType } from './CheckItem';
@@ -8,15 +8,31 @@ import Icon from './Icon';
 
 interface PositionCheckListProps {
   list: CheckItemType;
+  value: string;
   onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
+  handleSearch: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
   className?: string;
 }
 
 const GradeCheckList = ({
   list,
   className,
+  value,
   onClick,
+  handleSearch,
 }: PositionCheckListProps) => {
+  const getSearchResult = () => {
+    const newList: CheckItemType = {};
+    Object.keys(list).forEach((key: string) => {
+      if (list[key]['userGradeName'].includes(value)) {
+        newList[key] = { ...list[key] };
+      }
+    });
+    return newList;
+  };
+
+  const newList = getSearchResult();
+
   return (
     <CheckListWrapper className={className}>
       <Input
@@ -24,12 +40,16 @@ const GradeCheckList = ({
         withIcon
         borderRadius="0"
         css={inputStyle}
+        onChange={(e) =>
+          handleSearch(e as React.ChangeEvent<HTMLInputElement>, 'userGrade')
+        }
+        value={value}
       >
         <Icon icon="IcSearch" color="#cacaca" size="1.5rem" />
       </Input>
-      {Object.keys(list).map((key) => (
+      {Object.keys(newList).map((key) => (
         <CheckItem
-          checkItem={list[key]}
+          checkItem={newList[key]}
           onClick={onClick}
           key={key}
           name="userGrade"

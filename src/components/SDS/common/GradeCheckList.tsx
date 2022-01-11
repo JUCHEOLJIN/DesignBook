@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 import CheckItem, { CheckItemType } from './CheckItem';
 import Input from './Input';
 import Icon from './Icon';
+import useDebounce from '../../hooks/useDebounce';
 
 interface PositionCheckListProps {
   list: CheckItemType;
@@ -21,10 +22,12 @@ const GradeCheckList = ({
   onClick,
   handleSearch,
 }: PositionCheckListProps) => {
+  const debounceValue = useDebounce(value);
+
   const getSearchResult = () => {
     const newList: CheckItemType = {};
     Object.keys(list).forEach((key: string) => {
-      if (list[key]['userGradeName'].includes(value)) {
+      if (list[key]['userGradeName'].includes(debounceValue)) {
         newList[key] = { ...list[key] };
       }
     });

@@ -50,14 +50,16 @@ const PositionCheckList = ({
       >
         <Icon icon="IcSearch" color="#cacaca" size="1.5rem" />
       </Input>
-      {Object.keys(newList).map((key) => (
-        <CheckItem
-          checkItem={newList[key]}
-          onClick={onClick}
-          name="position"
-          key={key}
-        />
-      ))}
+      <ul>
+        {Object.keys(newList).map((key) => (
+          <CheckItem
+            checkItem={newList[key]}
+            onClick={onClick}
+            name="position"
+            key={key}
+          />
+        ))}
+      </ul>
     </CheckListWrapper>
   );
 };

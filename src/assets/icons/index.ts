@@ -12,3 +12,4 @@ export { ReactComponent as IcSearch } from './icbtn-search.svg';
 export { ReactComponent as IcGrade0 } from './icon-grade-1.svg';
 export { ReactComponent as IcGrade1 } from './icon-grade-2.svg';
 export { ReactComponent as IcGrade2 } from './icon-grade-3.svg';
+export { ReactComponent as IcGraph } from './ic-graph.svg';

@@ -31,6 +31,7 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
   const [groupSearchValue, setGroupSearchValue] = useState('');
   const [userGradeSearchValue, setUserGradeSearchValue] = useState('');
   const [isTopDownCheck, setIsTopDownCheck] = useState(false);
+  const [closedToggles, setClosedToggles] = useState<string[]>([]);
 
   /**
    * 필터를 선택하는 함수. 그룹 / 직급 / 등급
@@ -148,6 +149,15 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
     onTopDownCheck();
   };
 
+  const handleToggle = (id: string) => {
+    setClosedToggles((prev) => {
+      if (closedToggles.includes(id)) {
+        return prev.filter((item) => item !== id);
+      }
+      return [...prev, id];
+    });
+  };
+
   return (
     <Modal
       title="직원필터"
@@ -185,10 +195,12 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
             list={groupList}
             value={groupSearchValue}
             isTopDownCheck={isTopDownCheck}
+            closedToggles={closedToggles}
             onClick={handleCheck}
             handleSearch={handleSearch}
             handleTopDownCheck={handleTopDownCheck}
             setTargetList={setTargetList}
+            handleToggle={handleToggle}
           />
         )}
       </Wrapper>

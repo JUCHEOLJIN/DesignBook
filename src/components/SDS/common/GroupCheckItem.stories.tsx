@@ -64,6 +64,7 @@ export const DepthTree: ComponentStory<typeof GradeCheckList> = ({
           name="group"
           key={each.groupId}
           onClick={() => console.log('click')}
+          handleToggle={() => console.log('Toggle')}
         />
       ))}
     </>

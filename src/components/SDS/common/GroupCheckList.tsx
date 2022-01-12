@@ -13,10 +13,12 @@ interface GroupCheckListProps {
   list: CheckItemType;
   value: string;
   isTopDownCheck: boolean;
+  closedToggles?: string[];
   onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
   handleTopDownCheck: () => void;
   setTargetList: (name: string, checked: CheckItemType) => void;
+  handleToggle: (id: string) => void;
   className?: string;
 }
 
@@ -24,10 +26,12 @@ const GroupCheckList = ({
   list,
   value,
   isTopDownCheck,
+  closedToggles,
   className,
   onClick,
   handleSearch,
   handleTopDownCheck,
+  handleToggle,
   setTargetList,
 }: GroupCheckListProps) => {
   const debounceValue = useDebounce(value);
@@ -65,7 +69,7 @@ const GroupCheckList = ({
   };
 
   return (
-    <CheckListWrapper>
+    <CheckListWrapper className={className}>
       <Input
         placeholder="검색어를 입력하세요"
         withIcon
@@ -95,9 +99,12 @@ const GroupCheckList = ({
           ? Object.keys(newList).map((key) => (
               <GroupCheckItem
                 checkItem={newList[key]}
+                list={list}
                 onClick={handleCheck}
                 key={key}
                 name="group"
+                closedToggles={closedToggles}
+                handleToggle={handleToggle}
               />
             ))
           : Object.keys(newList).map((key) => (

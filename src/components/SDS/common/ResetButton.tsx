@@ -24,6 +24,7 @@ const buttonStyled = css`
   border: none;
   color: ${theme.colors.black};
   font-size: 14px;
+  background: none;
 
   svg {
     margin-right: 0.5rem;

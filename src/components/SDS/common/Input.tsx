@@ -89,8 +89,12 @@ const Input = ({
       <InputBar value={value} placeholder={placeholder} onChange={onChange} />
       {children}
       {withClose && (
-        <button css={closeBtnStyle} onClick={closeAndBlur} ref={buttonRef}>
-          <Icon icon="IcSearchCloseBtn" size="2rem" color="" />
+        <button
+          css={[closeBtnStyle, value && valueStyle]}
+          onClick={closeAndBlur}
+          ref={buttonRef}
+        >
+          <Icon icon="IcSearchCloseBtn" size="2rem" />
         </button>
       )}
     </InputBox>
@@ -166,4 +170,8 @@ const closeBtnStyle = css`
   right: 3.5rem;
   background: transparent;
   cursor: pointer;
+`;
+
+const valueStyle = css`
+  display: block;
 `;

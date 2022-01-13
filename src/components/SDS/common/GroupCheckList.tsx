@@ -8,6 +8,7 @@ import GroupCheckItem from './GroupCheckItem';
 import CheckItem, { CheckItemType } from './CheckItem';
 import handleData from '../../../utils/handleData';
 import useDebounce from '../../hooks/useDebounce';
+import EmptyList from './EmptyList';
 
 interface GroupCheckListProps {
   list: CheckItemType;
@@ -70,13 +71,38 @@ const GroupCheckList = ({
     }
   };
 
+  const renderList = () => {
+    if (!value) {
+      return Object.keys(newList).map((key) => (
+        <GroupCheckItem
+          checkItem={newList[key]}
+          list={list}
+          onClick={handleCheck}
+          key={key}
+          name="group"
+          closedToggles={closedToggles}
+          handleToggle={handleToggle}
+        />
+      ));
+    } else {
+      return Object.keys(newList).map((key) => (
+        <CheckItem
+          checkItem={newList[key]}
+          onClick={onClick}
+          key={key}
+          name="group"
+        />
+      ));
+    }
+  };
+
   return (
     <CheckListWrapper className={className}>
       <Input
         placeholder="검색어를 입력하세요"
         withIcon
         borderRadius="0"
-        css={inputStyle}
+        css={[inputStyle, value && valueStyle]}
         onChange={(e) =>
           handleSearch(e as React.ChangeEvent<HTMLInputElement>, 'group')
         }
@@ -99,26 +125,7 @@ const GroupCheckList = ({
         </OptionBox>
       )}
       <ul>
-        {!value
-          ? Object.keys(newList).map((key) => (
-              <GroupCheckItem
-                checkItem={newList[key]}
-                list={list}
-                onClick={handleCheck}
-                key={key}
-                name="group"
-                closedToggles={closedToggles}
-                handleToggle={handleToggle}
-              />
-            ))
-          : Object.keys(newList).map((key) => (
-              <CheckItem
-                checkItem={newList[key]}
-                onClick={onClick}
-                key={key}
-                name="group"
-              />
-            ))}
+        {Object.values(newList).length > 0 ? renderList() : <EmptyList />}
       </ul>
     </CheckListWrapper>
   );
@@ -130,7 +137,7 @@ const CheckListWrapper = styled.div`
   width: 540px;
 `;
 
-const inputStyle = css`
+export const inputStyle = css`
   height: 60px;
   border: none;
   border-bottom: 1px solid #eaeaea;
@@ -156,6 +163,20 @@ const inputStyle = css`
     > svg {
       display: none;
     }
+  }
+`;
+
+export const valueStyle = css`
+  padding: 0.5rem 0.875em 0.5rem 0.875rem;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+
+  input::placeholder {
+    color: #fff;
+  }
+
+  > svg {
+    display: none;
   }
 `;
 

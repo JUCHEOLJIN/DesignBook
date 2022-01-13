@@ -54,6 +54,18 @@ const EmployeeFilter = ({
     }
   };
 
+  const renderNewMark = () => {
+    if (
+      handleList() !== [] &&
+      handleList() !== undefined &&
+      handleList()[0] !== undefined &&
+      handleList().length !== Object.keys(list).length
+    ) {
+      return <NewMark />;
+    }
+    return;
+  };
+
   return (
     <FilterWrapper
       isActive={isActive}
@@ -61,13 +73,16 @@ const EmployeeFilter = ({
       onClick={onClick}
       id={type}
     >
-      <Icon
-        icon={icon}
-        css={css`
-          margin-top: -2px;
-          margin-right: 15px;
-        `}
-      />
+      <div css={relativeStyle}>
+        <Icon
+          icon={icon}
+          css={css`
+            margin-top: -2px;
+            margin-right: 15px;
+          `}
+        />
+        {renderNewMark()}
+      </div>
       <TextBox>
         <Type>{type}</Type>
         <Condition>{getSelectedResult()}</Condition>
@@ -100,4 +115,19 @@ const Type = styled.p`
 
 const Condition = styled.p`
   color: ${({ theme }) => theme.colors.shoplBlue};
+`;
+
+const relativeStyle = css`
+  position: relative;
+`;
+
+const NewMark = styled.div`
+  position: absolute;
+  top: -2px;
+  right: 1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: red;
 `;

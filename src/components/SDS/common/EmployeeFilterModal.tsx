@@ -142,6 +142,9 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
    * 하위크룹 한번에 체크 시에 체크리스트 순회하면서 자동으로 하위그룹 체크
    */
   const onTopDownCheck = () => {
+    if (isTopDownCheck) {
+      return;
+    }
     const checkedIdList = Object.keys(groupList).filter(
       (key) => groupList[key].isChecked,
     );

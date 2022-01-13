@@ -16,6 +16,7 @@ interface GroupCheckListProps {
   closedToggles?: string[];
   onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
+  closeSearch: (name: string) => void;
   handleTopDownCheck: () => void;
   setTargetList: (name: string, checked: CheckItemType) => void;
   handleToggle: (id: string) => void;
@@ -30,6 +31,7 @@ const GroupCheckList = ({
   className,
   onClick,
   handleSearch,
+  closeSearch,
   handleTopDownCheck,
   handleToggle,
   setTargetList,
@@ -78,7 +80,9 @@ const GroupCheckList = ({
         onChange={(e) =>
           handleSearch(e as React.ChangeEvent<HTMLInputElement>, 'group')
         }
+        onClose={() => closeSearch('group')}
         value={value}
+        withClose
       >
         <Icon icon="IcSearch" color="#cacaca" size="1.5rem" />
       </Input>
@@ -149,7 +153,7 @@ const inputStyle = css`
       color: #fff;
     }
 
-    svg {
+    > svg {
       display: none;
     }
   }

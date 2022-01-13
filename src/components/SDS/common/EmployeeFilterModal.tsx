@@ -118,6 +118,25 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
         throw new Error(`${name} is invalid parameter`);
     }
   };
+
+  /**
+   * 검색창을 지우는 동작을 하는 함수.
+   */
+  const closeSearch = (name: string) => {
+    switch (name) {
+      case 'position':
+        setPositionSearchValue('');
+        break;
+      case 'group':
+        setGroupSearchValue('');
+        break;
+      case 'userGrade':
+        setUserGradeSearchValue('');
+        break;
+      default:
+        throw new Error(`${name} is invalid parameter`);
+    }
+  };
   /**
    * 하위크룹 한번에 체크 시에 체크리스트 순회하면서 자동으로 하위그룹 체크
    */
@@ -179,6 +198,7 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
             list={positionList}
             onClick={handleCheck}
             handleSearch={handleSearch}
+            closeSearch={closeSearch}
             value={positionSearchValue}
           />
         )}
@@ -187,6 +207,7 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
             list={gradeList}
             onClick={handleCheck}
             handleSearch={handleSearch}
+            closeSearch={closeSearch}
             value={userGradeSearchValue}
           />
         )}
@@ -198,6 +219,7 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
             closedToggles={closedToggles}
             onClick={handleCheck}
             handleSearch={handleSearch}
+            closeSearch={closeSearch}
             handleTopDownCheck={handleTopDownCheck}
             setTargetList={setTargetList}
             handleToggle={handleToggle}

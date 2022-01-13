@@ -20,6 +20,7 @@ Primary.args = {
   placeholder: '입력하세요',
   width: '90%',
   onChange: action('change'),
+  withClose: true,
 };
 
 export const Secondary = Template.bind({});

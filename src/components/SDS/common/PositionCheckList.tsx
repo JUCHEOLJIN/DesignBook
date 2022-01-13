@@ -12,6 +12,7 @@ interface PositionCheckListProps {
   value: string;
   onClick: (e: React.MouseEvent<HTMLElement>, name: string) => void;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
+  closeSearch: (name: string) => void;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ const PositionCheckList = ({
   className,
   onClick,
   handleSearch,
+  closeSearch,
 }: PositionCheckListProps) => {
   const debounceValue = useDebounce(value);
 
@@ -46,7 +48,9 @@ const PositionCheckList = ({
         onChange={(e) =>
           handleSearch(e as React.ChangeEvent<HTMLInputElement>, 'position')
         }
+        onClose={() => closeSearch('position')}
         value={value}
+        withClose
       >
         <Icon icon="IcSearch" color="#cacaca" size="1.5rem" />
       </Input>
@@ -93,7 +97,7 @@ const inputStyle = css`
       color: #fff;
     }
 
-    svg {
+    > svg {
       display: none;
     }
   }

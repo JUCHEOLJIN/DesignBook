@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import Icon from './Icon';
 
 interface InputProps {
   /**
@@ -45,9 +46,19 @@ interface InputProps {
   withIcon?: boolean;
 
   /**
+   *  입력을 지울 수 있는 버튼을 함께 보여주는 경우에 설정합니다.
+   */
+  withClose?: boolean;
+
+  /**
    *  입력 시에 발생하는 동작입니다.
    */
   onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+
+  /**
+   *  입력을 지울 수 있는 동작입니다.
+   */
+  onClose?: () => void;
 }
 
 const Input = ({
@@ -58,17 +69,33 @@ const Input = ({
   borderRadius,
   width,
   withIcon,
+  withClose,
   children,
   onChange,
-}: InputProps) => (
-  <InputBox
-    css={[{ borderRadius, width }, themes[theme], withIcon && withIconStyle]}
-    className={className}
-  >
-    <InputBar value={value} placeholder={placeholder} onChange={onChange} />
-    {children}
-  </InputBox>
-);
+  onClose,
+}: InputProps) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const closeAndBlur = useCallback(() => {
+    onClose && onClose();
+    buttonRef?.current?.blur();
+  }, []);
+
+  return (
+    <InputBox
+      css={[{ borderRadius, width }, themes[theme], withIcon && withIconStyle]}
+      className={className}
+    >
+      <InputBar value={value} placeholder={placeholder} onChange={onChange} />
+      {children}
+      {withClose && (
+        <button css={closeBtnStyle} onClick={closeAndBlur} ref={buttonRef}>
+          <Icon icon="IcSearchCloseBtn" size="2rem" color="" />
+        </button>
+      )}
+    </InputBox>
+  );
+};
 
 export default Input;
 
@@ -91,6 +118,12 @@ const InputBox = styled.div`
   &:hover,
   &:focus-within {
     border: ${({ theme }) => '1px solid ' + theme.colors.shoplBlue};
+  }
+
+  &:focus-within {
+    button {
+      display: block;
+    }
   }
 `;
 
@@ -125,4 +158,12 @@ const themes = {
 
 const withIconStyle = css`
   padding: 0.5rem 0.875rem 0.5rem 3.875rem;
+`;
+
+const closeBtnStyle = css`
+  display: none;
+  position: absolute;
+  right: 3.5rem;
+  background: transparent;
+  cursor: pointer;
 `;

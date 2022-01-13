@@ -236,7 +236,8 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
       confirmText="적용"
       cancelText="취소"
       isOpened={isOpened}
-      subChidren={<ResetButton onClick={handleReset} />}
+      subChidren={<ResetButton />}
+      onSubAction={handleReset}
     >
       <Wrapper>
         <EmployeeFilterList

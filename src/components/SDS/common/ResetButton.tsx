@@ -4,23 +4,24 @@ import { css } from '@emotion/react';
 import Button from './Button';
 import Icon from './Icon';
 import theme from '../../../styles/Theme';
+import styled from '@emotion/styled';
 
-interface ResetButtonProps {
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
-}
+interface ResetButtonProps {}
 
-const ResetButton = ({ onClick }: ResetButtonProps) => {
+const ResetButton = (props: ResetButtonProps) => {
   return (
-    <Button theme="quaternary" css={buttonStyled} onClick={onClick}>
-      <Icon icon="IcRefresh" />
+    <ResetWrapper>
+      <Icon icon="IcRefresh" size="1rem" />
       초기화
-    </Button>
+    </ResetWrapper>
   );
 };
 
 export default ResetButton;
 
-const buttonStyled = css`
+const ResetWrapper = styled.div`
+  display: flex;
+  align-items: center;
   border: none;
   color: ${theme.colors.black};
   font-size: 14px;

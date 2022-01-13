@@ -8,6 +8,7 @@ import GradeCheckList from './GradeCheckList';
 import { USER_GRADE, USER_POSITION, ADMIN_GROUP } from '../../../utils/lists';
 import handleData from '../../../utils/handleData';
 import GroupCheckList from './GroupCheckList';
+import ResetButton from './ResetButton';
 
 interface EmployeeFilterModalProps {
   isOpened: boolean;
@@ -177,6 +178,54 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
     });
   };
 
+  const resetGroup = () => {
+    const resetGroupList = handleData(
+      Object.values(groupList).map((value) => {
+        return { ...value, isChecked: false };
+      }),
+      'group',
+    );
+    setGroupList(resetGroupList);
+  };
+
+  const resetPosition = () => {
+    const resetPositionList = handleData(
+      Object.values(positionList).map((value) => {
+        return { ...value, isChecked: false };
+      }),
+      'position',
+    );
+    setPositionList(resetPositionList);
+  };
+
+  const resetGrade = () => {
+    const resetGradeList = handleData(
+      Object.values(gradeList).map((value) => {
+        return { ...value, isChecked: false };
+      }),
+      'userGrade',
+    );
+    setGradeList(resetGradeList);
+  };
+
+  const resetSearchValue = () => {
+    setGroupSearchValue('');
+    setPositionSearchValue('');
+    setUserGradeSearchValue('');
+  };
+
+  const resetIsTopDownCheck = () => {
+    setIsTopDownCheck(false);
+  };
+
+  const handleReset = () => {
+    resetGroup();
+    resetPosition();
+    resetGrade();
+    resetSearchValue();
+    resetIsTopDownCheck();
+  };
+
   return (
     <Modal
       title="직원필터"
@@ -184,6 +233,7 @@ const EmployeeFilterModal = ({ isOpened }: EmployeeFilterModalProps) => {
       confirmText="적용"
       cancelText="취소"
       isOpened={isOpened}
+      subChidren={<ResetButton onClick={handleReset} />}
     >
       <Wrapper>
         <EmployeeFilterList

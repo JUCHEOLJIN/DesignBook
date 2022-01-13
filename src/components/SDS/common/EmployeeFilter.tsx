@@ -43,7 +43,8 @@ const EmployeeFilter = ({
     if (
       handleList() !== [] &&
       handleList() !== undefined &&
-      handleList()[0] !== undefined
+      handleList()[0] !== undefined &&
+      handleList().length !== Object.keys(list).length
     ) {
       return `${list[handleList()[0]][nameKey]} ${
         handleList().length > 1 ? `+ ${handleList().length - 1}` : ''
